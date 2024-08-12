@@ -9,7 +9,33 @@ export async function POST(request: Request) {
   headers.set('Access-Control-Allow-Methods', 'POST')
   headers.set('Access-Control-Allow-Headers', 'Content-Type')
 
-  const { name, email, phone, message } = await request.json()
+  const {
+    name,
+    email,
+    phone,
+    message,
+    'g-recaptcha-response': recaptchaToken,
+  } = await request.json()
+
+  // Verify reCAPTCHA
+  const recaptchaResponse = await fetch(
+    `https://www.google.com/recaptcha/api/siteverify`,
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: `secret=${process.env.RECAPTCHA_V2_SITE_KEY}&response=${recaptchaToken}`,
+    }
+  )
+  const recaptchaData = await recaptchaResponse.json()
+
+  if (!recaptchaData.success) {
+    return new Response(
+      JSON.stringify({ status: 'CAPTCHA verification failed' }),
+      { status: 400 }
+    )
+  }
 
   const transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
