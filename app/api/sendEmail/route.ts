@@ -50,7 +50,7 @@ export async function POST(request: Request) {
   try {
     await transporter.sendMail({
       from: `"${name}" <${email}>`,
-      to: 'ye.wang@dv8energy.com, wang77289271@gmail.com',
+      to: 'ye.wang@dv8energy.com, info@dv8energy.com',
       subject: 'Message From POC Gateway Page',
       text: `New message from poc gateway contact form:\n\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\n\nMessage:\n${message}`,
     })
