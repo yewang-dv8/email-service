@@ -41,7 +41,7 @@ export async function POST(request: Request) {
 
 export async function OPTIONS() {
   const headers = new Headers({
-    'Access-Control-Allow-Origin': 'http://localhost:5173',
+    'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Methods': 'POST',
     'Access-Control-Allow-Headers': 'Content-Type',
   })
