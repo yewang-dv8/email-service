@@ -52,8 +52,8 @@ export async function POST(request: Request) {
   try {
     await transporter.sendMail({
       from: `"${name}" <${email}>`,
-      to: 'ye.wang@dv8energy.com, info@dv8energy.com',
-      subject: `Message From ADF Page`,
+      to: 'ye.wang@dv8energy.com',
+      subject: `New Message for Demo Request`,
       html: `
         <div style="font-family: Arial, sans-serif; color: #333;">
           <h2 style="color: #4CAF50;">New Demo Request:</h2>
