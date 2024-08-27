@@ -14,6 +14,8 @@ export async function POST(request: Request) {
     email,
     phone,
     message,
+    options,
+    otherMessage,
     'g-recaptcha-response': recaptchaToken,
   } = await request.json()
 
@@ -37,6 +39,11 @@ export async function POST(request: Request) {
     )
   }
 
+  const optionsText = options.join(', ')
+  const otherMessageText = otherMessage
+    ? `\nAdditional Details: ${otherMessage}`
+    : ''
+
   const transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
     port: 465,
@@ -52,7 +59,7 @@ export async function POST(request: Request) {
       from: `"${name}" <${email}>`,
       to: 'ye.wang@dv8energy.com, info@dv8energy.com',
       subject: `Message From VFD Page`,
-      text: `New message from ADF contact form:\n\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\n\nMessage:\n${message}`,
+      text: `New message from VFD contact form:\n\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\n\nOptions Selected: ${optionsText}${otherMessageText}\n\nMessage:\n${message}`,
     })
 
     return NextResponse.json({ status: 'Email Sent' }, { status: 200, headers })
