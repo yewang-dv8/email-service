@@ -4,7 +4,11 @@ import { Survey } from '@/lib/survey.types'
 import { ObjectId } from 'mongodb'
 
 function setCorsHeaders(origin: string) {
-  const allowedOrigins = ['http://localhost:5173', process.env.PRODUCTION_SITE]
+  const allowedOrigins = [
+    'http://localhost:5173',
+    process.env.PRODUCTION_FRONTEND_SITE,
+    process.env.PRODUCTION_BACKEND_SITE,
+  ]
 
   const headers = new Headers()
 
@@ -16,6 +20,7 @@ function setCorsHeaders(origin: string) {
 
   headers.set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
   headers.set('Access-Control-Allow-Headers', 'Content-Type')
+  headers.set('Access-Control-Allow-Credentials', 'true')
 
   return headers
 }
