@@ -14,6 +14,7 @@ function setCorsHeaders(origin: string) {
 
   headers.set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
   headers.set('Access-Control-Allow-Headers', 'Content-Type')
+  headers.set('Access-Control-Allow-Credentials', 'true')
 
   return headers
 }
@@ -74,6 +75,7 @@ export async function POST(request: Request) {
     response.cookies.set('survey_submitted', 'true', {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
+      sameSite: 'none',
       maxAge: 60 * 60 * 24 * 7,
     })
 
