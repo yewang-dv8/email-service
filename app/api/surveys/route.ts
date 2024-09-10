@@ -6,8 +6,8 @@ import { ObjectId } from 'mongodb'
 function setCorsHeaders(origin: string) {
   const allowedOrigins = [
     'http://localhost:5173',
-    process.env.PRODUCTION_FRONTEND_SITE,
-    process.env.PRODUCTION_BACKEND_SITE,
+    'https://www.dv8energy.com',
+    'https://email-service-lemon.vercel.app',
   ]
 
   const headers = new Headers()
