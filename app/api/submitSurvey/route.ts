@@ -56,7 +56,7 @@ export async function POST(request: Request) {
     const surveyResponse = {
       title: body.title,
       responses: body.responses,
-      token: body.token,
+      form_id: body.form_id,
       submitted_date: new Date(),
     }
 
