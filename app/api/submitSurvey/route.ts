@@ -53,10 +53,17 @@ export async function POST(request: Request) {
       )
     }
 
+    const userInfo = {
+      email: body.userEmail || '',
+      name: body.userName || '',
+      company: body.userCompany || '',
+    }
+
     const surveyResponse = {
       title: body.title,
       responses: body.responses,
       form_id: body.form_id,
+      userInfo,
       submitted_date: new Date(),
     }
 
