@@ -53,7 +53,7 @@ export async function POST(request: Request) {
     await transporter.sendMail({
       from: `"${name}" <${email}>`,
       to: 'ye.wang@dv8energy.com, info@dv8water.com',
-      subject: `New Message from ${name}`,
+      subject: `DV8 Water New Message from ${name}`,
       html: `
         <div style="font-family: Arial, sans-serif; color: #333;">
           <h2 style="color: #4CAF50;">Contact Us:</h2>
