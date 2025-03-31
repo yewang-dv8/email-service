@@ -57,7 +57,7 @@ export async function POST(request: Request) {
   try {
     await transporter.sendMail({
       from: `"${name}" <${email}>`,
-      to: 'ye.wang@dv8energy.com, info@dv8energy.com',
+      to: 'ye.wang@dv8energy.com, info@dv8energy.com, dermot.lyons@dv8energy.com',
       subject: `Message From VFD Page`,
       text: `New message from VFD contact form:\n\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\n\nOptions Selected: ${optionsText}${otherMessageText}\n\nMessage:\n${message}`,
     })
