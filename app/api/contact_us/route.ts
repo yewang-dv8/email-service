@@ -14,8 +14,6 @@ export async function POST(request: Request) {
     email,
     phone,
     message,
-    company,
-    marketingConsent,
     'g-recaptcha-response': recaptchaToken,
   } = await request.json()
 
@@ -52,7 +50,7 @@ export async function POST(request: Request) {
   try {
     await transporter.sendMail({
       from: `"${name}" <${email}>`,
-      to: 'ye.wang@dv8energy.com, info@dv8energy.com, dermot.lyons@dv8energy.com',
+      to: 'ye.wang@dv8energy.com',
       subject: `New Message from ${name}`,
       html: `
         <div style="font-family: Arial, sans-serif; color: #333;">
@@ -60,10 +58,6 @@ export async function POST(request: Request) {
           <p><strong>Name:</strong> ${name}</p>
           <p><strong>Email:</strong> ${email}</p>
           <p><strong>Phone:</strong> ${phone}</p>
-          <p><strong>Company:</strong> ${company}</p>
-          <p><strong>Marketing Consent:</strong> ${
-            marketingConsent ? 'Yes' : 'No'
-          }</p>
           <p><strong>Message (optional):</strong></p>
           <p style="padding: 10px; border-radius: 5px;">${message}</p>
         </div>
